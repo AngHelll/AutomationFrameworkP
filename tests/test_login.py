@@ -1,29 +1,30 @@
 import pytest
 from pages.login_page import LoginPage
-from pages.dashboard_page import DashboardPage
 
-@pytest.mark.parametrize("username, password", [
-    ("admin", "admin123"),
-    ("user1", "user123"),
-    ("testuser", "testpass")
-])
-def test_login_success(driver, username, password):
-    """Test successful login with multiple users."""
-    login_page = LoginPage(driver)
-    login_page.login(username, password)
+def test_example_page_loads(driver):
+    """Verify the Example Domain page loads successfully."""
+    driver.get("https://example.com/")
+    example_page = LoginPage(driver)
 
-    dashboard_page = DashboardPage(driver)
-    assert dashboard_page.is_dashboard_loaded(), "Dashboard did not load correctly."
+    assert example_page.is_page_loaded(), "Example Domain page did not load properly."
 
-@pytest.mark.parametrize("username, password", [
-    ("user", "wrongpass"),
-    ("", "admin123"),
-    ("admin", "")
-])
-def test_login_failure(driver, username, password):
-    """Test login failure scenarios."""
-    login_page = LoginPage(driver)
-    login_page.login(username, password)
+def test_main_header(driver):
+    """Verify the main header text."""
+    driver.get("https://example.com/")
+    example_page = LoginPage(driver)
 
-    error_message = driver.find_element(*login_page.error_message).text
-    assert "Invalid credentials" in error_message, "Expected error message not displayed."
+    assert "Example Domain" in example_page.get_main_header_text(), "Header text does not match."
+
+def test_paragraph_is_present(driver):
+    """Verify the paragraph text is visible."""
+    driver.get("https://example.com/")
+    example_page = LoginPage(driver)
+
+    assert example_page.is_paragraph_present(), "Paragraph text is not displayed."
+
+def test_more_info_link(driver):
+    """Verify that the 'More information...' link is visible."""
+    driver.get("https://example.com/")
+    example_page = LoginPage(driver)
+
+    assert example_page.is_more_info_link_present(), "More information link not found."

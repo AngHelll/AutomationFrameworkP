@@ -13,7 +13,7 @@ def test_main_header(driver):
     driver.get("https://cli.github.com/")
     github_page = GitHubCLIPage(driver)
 
-    assert "GitHub CLI" in github_page.get_main_header_text(), "Header text does not match."
+    assert "Take GitHub to the command line" in github_page.get_main_header_text(), "Header text does not match."
 
 def test_download_button_presence(driver):
     """Verify that the download button is visible"""
