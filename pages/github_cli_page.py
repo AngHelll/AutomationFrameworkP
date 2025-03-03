@@ -17,5 +17,9 @@ class GitHubCLIPage:
         return header.text
 
     def is_download_button_present(self):
-        """Check if the download button is present"""
-        return len(self.driver.find_elements(By.LINK_TEXT, "Download for Windows")) > 0
+        """Check if the 'Download for Windows' button is present"""
+        try:
+            self.wait.until(EC.presence_of_element_located((By.LINK_TEXT, "Download for Windows")))
+            return True
+        except:
+            return False
