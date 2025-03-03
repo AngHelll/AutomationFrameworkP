@@ -1,31 +1,43 @@
 # 🚀 Automation Framework
 
 ## 📌 Overview
-This is a **Selenium-based automation framework** built with **Python & Pytest** to test the **Example Domain page** (`https://example.com/`). The framework ensures stable, parallel, and efficient UI testing, supporting multiple browsers and CI/CD integration with GitHub Actions.
+This is a **Selenium-based automation framework** built with **Python & Pytest** to test web applications. The framework ensures stable, parallel, and efficient UI testing, supporting multiple browsers and CI/CD integration with GitHub Actions.
 
 ---
 
 ## 📂 Project Structure
 ```
 AutomationFramework/
+│── .github/                 # CI/CD GitHub Actions configuration
+│
 │── config/                  # WebDriver and settings configuration
-│   ├── webdriver_setup.py   # WebDriver initialization
+│   ├── browser_setup.py     # WebDriver initialization
 │   ├── settings.py          # General settings (timeouts, URLs, etc.)
 │
 │── pages/                   # Page Object Model (POM) files
-│   ├── example_page.py      # Interactions with Example Domain
-│
-│── tests/                   # Automated test cases
-│   ├── test_example_page.py # Test cases for Example Domain
+│   ├── dashboard_page.py    # Interactions with Dashboard
+│   ├── github_cli_page.py   # Interactions with GitHub CLI page
+│   ├── login_page.py        # Interactions with Login page
 │
 │── reports/                 # Test reports and logs
+│   ├── test_report.html     # Latest HTML test report
+│   ├── test_report_.html    # Backup report
+│
+│── tests/                   # Automated test cases
+│   ├── reports/             # Test-specific reports
+│   ├── test_github_cli.py   # Test cases for GitHub CLI page
+│   ├── test_login.py        # Test cases for Login page
+│
 │── utils/                   # Helper functions (screenshots, logs, etc.)
-│── .github/workflows/       # CI/CD GitHub Actions configuration
-│── requirements.txt         # Python dependencies
-│── conftest.py              # Pytest fixtures (WebDriver setup)
-│── pytest.ini               # Pytest configuration
+│   ├── helpers.py           # Utility functions
+│
+│── .env                     # Environment variables (ignored)
 │── .gitignore               # Ignored files and directories
+│── conftest.py              # Pytest fixtures (WebDriver setup)
+│── Dockerfile               # Docker configuration
+│── pytest.ini               # Pytest configuration
 │── README.md                # Documentation
+│── requirements.txt         # Python dependencies
 ```
 
 ---
@@ -70,7 +82,7 @@ pytest --html=reports/test_report.html --self-contained-html
 ---
 
 ## 🔧 Configuration
-### **Modify `config/webdriver_setup.py` to change browser settings**
+### **Modify `config/browser_setup.py` to change browser settings**
 - Supports **Chrome, Firefox, and Edge**
 - Enables **headless mode** for CI/CD execution
 
@@ -92,11 +104,14 @@ This framework includes **GitHub Actions** to run tests automatically on every *
 ---
 
 ## 📌 Test Cases Overview
-✅ **`test_example_page.py`** verifies:
-- **Page title is correct**
+✅ **`test_github_cli.py`** verifies:
+- **GitHub CLI page loads correctly**
 - **Main header is visible**
-- **Paragraph text is present**
-- **More information link exists**
+- **Download button is present**
+
+✅ **`test_login.py`** verifies:
+- **Login form elements are present**
+- **Valid and invalid login cases**
 
 ---
 
@@ -119,6 +134,4 @@ This project is **open-source** under the **MIT License**.
 ---
 
 ## 📞 Contact
-- **GitHub:** [your-username](https://github.com/your-username)
-- **Email:** your-email@example.com
-
+- **GitHub:** AngHelll (https://github.com/AngHell)
