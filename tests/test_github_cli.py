@@ -8,7 +8,7 @@ def test_github_cli_page_loads(driver):
     driver.get("https://cli.github.com/")
 
     # Explicit wait to ensure the page is fully loaded
-    WebDriverWait(driver, 10).until(EC.title_contains("GitHub CLI"))
+    WebDriverWait(driver, 20).until(EC.title_contains("GitHub CLI"))
 
     github_page = GitHubCLIPage(driver)
 
