@@ -14,10 +14,10 @@ jobs:
 
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4  # Update to latest version
 
       - name: Set up Python
-        uses: actions/setup-python@v3
+        uses: actions/setup-python@v4  # Update to latest version
         with:
           python-version: "3.11"
 
@@ -30,7 +30,7 @@ jobs:
         run: pytest -n auto --html=reports/test_report.html --self-contained-html
 
       - name: Upload Test Reports as Artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4  # Update from v3 to v4
         with:
           name: test-reports
           path: reports/test_report.html
