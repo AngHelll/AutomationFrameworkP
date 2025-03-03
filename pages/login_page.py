@@ -9,7 +9,7 @@ class LoginPage:
         self.error_message = (By.ID, "error")
 
     def login(self, username, password):
-        """Realiza el login con las credenciales proporcionadas."""
+        """Perform login action."""
         self.driver.find_element(*self.username_input).clear()
         self.driver.find_element(*self.username_input).send_keys(username)
         self.driver.find_element(*self.password_input).clear()
