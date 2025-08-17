@@ -1,0 +1,89 @@
+{
+  "users": {
+    "valid_user": {
+      "username": "test_user",
+      "password": "test_password",
+      "email": "test@example.com",
+      "first_name": "Test",
+      "last_name": "User"
+    },
+    "invalid_user": {
+      "username": "invalid_user",
+      "password": "wrong_password",
+      "email": "invalid@example.com",
+      "first_name": "Invalid",
+      "last_name": "User"
+    },
+    "admin_user": {
+      "username": "admin_user",
+      "password": "admin_password",
+      "email": "admin@example.com",
+      "first_name": "Admin",
+      "last_name": "User",
+      "role": "admin"
+    }
+  },
+  "urls": {
+    "base_url": "https://cli.github.com",
+    "github_cli": "https://cli.github.com",
+    "login": "https://example.com/login",
+    "dashboard": "https://example.com/dashboard",
+    "documentation": "https://cli.github.com/docs",
+    "api": "https://api.github.com"
+  },
+  "test_data": {
+    "search_queries": [
+      "installation",
+      "configuration",
+      "authentication",
+      "commands",
+      "workflow"
+    ],
+    "platforms": [
+      "windows",
+      "mac",
+      "linux"
+    ],
+    "browsers": [
+      "chrome",
+      "firefox",
+      "edge"
+    ]
+  },
+  "assertions": {
+    "expected_titles": {
+      "github_cli": "GitHub CLI",
+      "login": "Login",
+      "dashboard": "Dashboard"
+    },
+    "expected_texts": {
+      "main_header": "Take GitHub to the command line",
+      "download_button": "Download for",
+      "documentation_link": "Documentation"
+    },
+    "timeouts": {
+      "page_load": 30,
+      "element_wait": 20,
+      "implicit_wait": 10
+    }
+  },
+  "performance": {
+    "max_page_load_time": 30,
+    "max_element_wait_time": 20,
+    "acceptable_response_time": 5
+  },
+  "environments": {
+    "staging": {
+      "base_url": "https://staging.cli.github.com",
+      "timeout_multiplier": 1.5
+    },
+    "production": {
+      "base_url": "https://cli.github.com",
+      "timeout_multiplier": 1.0
+    },
+    "development": {
+      "base_url": "http://localhost:3000",
+      "timeout_multiplier": 2.0
+    }
+  }
+}
