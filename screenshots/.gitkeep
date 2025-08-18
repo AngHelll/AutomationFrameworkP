@@ -1,0 +1,3 @@
+# This file ensures the screenshots directory is tracked by git
+# Screenshots are generated during test execution and should not be committed
+# but the directory structure should be maintained

@@ -39,8 +39,23 @@ AutomationFramework/
 ├── logs/                  # Execution logs
 ├── screenshots/           # Test screenshots
 ├── reports/               # Test reports
+├── docs/                  # Documentation
+│   ├── README.md          # Documentation index
+│   └── SPANISH_GUIDE.md   # Spanish guide for beginners
 └── conftest.py           # Pytest configuration
 ```
+
+## 📚 Documentation
+
+### 🌍 **For Spanish Speakers & Beginners**
+- **[Complete Spanish Guide](docs/SPANISH_GUIDE.md)** - Comprehensive guide in Spanish for users with basic technical level
+- **Perfect for**: Newcomers to automation testing, Spanish-speaking developers
+- **Content**: Basic concepts, practical examples, troubleshooting, step-by-step tutorials
+
+### 🇺🇸 **For English Speakers & Advanced Users**
+- **This README** - Complete technical documentation and API reference
+- **Perfect for**: Experienced developers, technical teams, enterprise users
+- **Content**: Technical specifications, advanced features, best practices
 
 ## 🚀 Quick Start
 
@@ -348,10 +363,16 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 For support and questions:
 
-- Create an issue in the repository
-- Check the documentation
-- Review the troubleshooting section
-- Contact the development team
+- **📚 Check Documentation First**:
+  - [Spanish Guide for Beginners](docs/SPANISH_GUIDE.md) - Complete guide in Spanish
+  - [Documentation Index](docs/README.md) - All available guides
+- **🐛 Report Issues**: Create an issue in the repository
+- **🔍 Troubleshooting**: Review the troubleshooting section below
+- **📞 Contact**: Contact the development team
+
+### 🌍 **Language Support**
+- **Español**: [Guía Completa para Principiantes](docs/SPANISH_GUIDE.md)
+- **English**: This README and technical documentation
 
 ---
 
