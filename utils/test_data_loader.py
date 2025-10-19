@@ -3,12 +3,12 @@ import os
 from typing import Dict, Any, List, Optional
 from utils.logger import logger
 
-class TestDataLoader:
+class DataLoader:
     """Utility class for loading and managing test data"""
     
     def __init__(self, data_file_path: str = None):
         """
-        Initialize TestDataLoader
+        Initialize DataLoader
         
         Args:
             data_file_path: Path to the test data JSON file
@@ -186,4 +186,4 @@ class TestDataLoader:
             return {}
 
 # Global test data loader instance
-test_data = TestDataLoader()
+test_data = DataLoader()

@@ -70,8 +70,15 @@ class BrowserManager:
             # Additional performance optimizations
             options.add_argument("--disable-extensions")
             options.add_argument("--disable-plugins")
-            options.add_argument("--disable-images")  # Optional: disable images for faster loading
-            options.add_argument("--disable-javascript")  # Optional: disable JS for faster loading
+            
+            # Configurable JavaScript and Images
+            if not browser_options['enable_images']:
+                options.add_argument("--disable-images")
+                logger.debug("Images disabled for faster loading")
+            
+            if not browser_options['enable_javascript']:
+                options.add_argument("--disable-javascript")
+                logger.debug("JavaScript disabled for faster loading")
             
             # Set user agent
             options.add_argument("--user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36")
@@ -107,6 +114,15 @@ class BrowserManager:
             options.set_preference("general.useragent.override", 
                                  "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:120.0) Gecko/20100101 Firefox/120.0")
             
+            # Configurable JavaScript and Images
+            if not browser_options['enable_javascript']:
+                options.set_preference("javascript.enabled", False)
+                logger.debug("JavaScript disabled for faster loading")
+            
+            if not browser_options['enable_images']:
+                options.set_preference("permissions.default.image", 2)
+                logger.debug("Images disabled for faster loading")
+            
             # Download and setup GeckoDriver
             firefox_service = FirefoxService(GeckoDriverManager().install())
             
@@ -134,8 +150,15 @@ class BrowserManager:
             # Additional Edge optimizations
             options.add_argument("--disable-extensions")
             options.add_argument("--disable-plugins")
-            options.add_argument("--disable-images")
-            options.add_argument("--disable-javascript")
+            
+            # Configurable JavaScript and Images
+            if not browser_options['enable_images']:
+                options.add_argument("--disable-images")
+                logger.debug("Images disabled for faster loading")
+            
+            if not browser_options['enable_javascript']:
+                options.add_argument("--disable-javascript")
+                logger.debug("JavaScript disabled for faster loading")
             
             # Download and setup EdgeDriver
             edge_service = EdgeService(EdgeChromiumDriverManager().install())

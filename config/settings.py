@@ -14,6 +14,10 @@ class TestSettings:
     IMPLICIT_WAIT = int(os.getenv("IMPLICIT_WAIT", "10"))
     EXPLICIT_WAIT = int(os.getenv("EXPLICIT_WAIT", "20"))
     
+    # Browser Optimization Settings
+    ENABLE_JAVASCRIPT = os.getenv("ENABLE_JAVASCRIPT", "true").lower() == "true"
+    ENABLE_IMAGES = os.getenv("ENABLE_IMAGES", "true").lower() == "true"
+    
     # Test Configuration
     SCREENSHOT_ON_FAILURE = os.getenv("SCREENSHOT_ON_FAILURE", "true").lower() == "true"
     RETRY_COUNT = int(os.getenv("RETRY_COUNT", "3"))
@@ -35,15 +39,21 @@ class TestSettings:
                 "no_sandbox": True,
                 "disable_dev_shm_usage": True,
                 "disable_gpu": True,
-                "window_size": "1920,1080"
+                "window_size": "1920,1080",
+                "enable_javascript": cls.ENABLE_JAVASCRIPT,
+                "enable_images": cls.ENABLE_IMAGES
             },
             "firefox": {
                 "headless": cls.HEADLESS,
-                "window_size": "1920,1080"
+                "window_size": "1920,1080",
+                "enable_javascript": cls.ENABLE_JAVASCRIPT,
+                "enable_images": cls.ENABLE_IMAGES
             },
             "edge": {
                 "headless": cls.HEADLESS,
-                "window_size": "1920,1080"
+                "window_size": "1920,1080",
+                "enable_javascript": cls.ENABLE_JAVASCRIPT,
+                "enable_images": cls.ENABLE_IMAGES
             }
         }
     
