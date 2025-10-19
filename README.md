@@ -14,6 +14,8 @@ A professional, scalable automation testing framework built with Python, Seleniu
 - **📁 Test Data Management**: Centralized test data with JSON configuration
 - **🚀 Parallel Execution**: Support for concurrent test execution
 - **🐳 Docker Ready**: Containerized execution support
+- **🎯 BDD Support**: Behavior-Driven Development with Behave (Gherkin syntax)
+- **🤖 AI-Powered**: Complete AI assistant context for code generation and help
 
 ## 🏗️ Architecture Overview
 
@@ -68,6 +70,8 @@ cd AutomationFramework
 
 # Install dependencies
 pip install -r requirements.txt
+
+# Note: Includes pytest, selenium, behave, and more!
 ```
 
 ### 2. Environment Configuration
@@ -94,7 +98,7 @@ RETRY_DELAY=2
 ### 3. Run Tests
 
 ```bash
-# Run all tests
+# Run Pytest tests
 pytest
 
 # Run tests with specific browser
@@ -114,6 +118,15 @@ pytest -v
 
 # Generate HTML report
 pytest --html=reports/report.html
+
+# Run BDD tests (Behave)
+behave
+
+# Run BDD with tags
+behave --tags=smoke
+
+# Run specific feature
+behave features/login.feature
 ```
 
 ## 🧪 Writing Tests

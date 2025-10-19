@@ -1,0 +1,61 @@
+{
+  "examples": [
+    {
+      "task": "create_page_object",
+      "user_query": "I need to create a page object for the profile page. It has a username field, email field, and save button.",
+      "ai_response": "I'll help you create a ProfilePage object. Here's the implementation:\n\n```python\n# pages/profile_page.py\nfrom selenium.webdriver.common.by import By\nfrom pages.base_page import BasePage\nfrom config.settings import TestSettings\nfrom utils.logger import logger\n\nclass ProfilePage(BasePage):\n    \"\"\"Page object for user profile page\"\"\"\n    \n    LOCATORS = {\n        'username_field': (By.ID, \"username\"),\n        'email_field': (By.ID, \"email\"),\n        'save_button': (By.ID, \"save-btn\"),\n        'success_message': (By.CLASS_NAME, \"success\"),\n    }\n    \n    def _get_page_url(self) -> str:\n        return f\"{TestSettings.BASE_URL}/profile\"\n    \n    def is_page_loaded(self) -> bool:\n        return self.is_element_visible(*self.LOCATORS['username_field'])\n    \n    def update_username(self, username: str) -> None:\n        \"\"\"Update username field\"\"\"\n        self.input_text(*self.LOCATORS['username_field'], username)\n        logger.info(f\"Updated username to: {username}\")\n    \n    def update_email(self, email: str) -> None:\n        \"\"\"Update email field\"\"\"\n        self.input_text(*self.LOCATORS['email_field'], email)\n        logger.info(f\"Updated email to: {email}\")\n    \n    def click_save(self) -> None:\n        \"\"\"Click save button\"\"\"\n        self.click_element(*self.LOCATORS['save_button'])\n    \n    def is_save_successful(self) -> bool:\n        \"\"\"Check if save was successful\"\"\"\n        return self.is_element_visible(*self.LOCATORS['success_message'], timeout=10)\n```\n\nNow you can create tests for this page object."
+    },
+    {
+      "task": "create_test",
+      "user_query": "Write a test for the login functionality that checks both successful and failed login attempts.",
+      "ai_response": "Here's a comprehensive test for login functionality:\n\n```python\n# tests/test_login.py\nimport pytest\nfrom pages.login_page import LoginPage\nfrom utils.logger import logger\nfrom utils.test_data_loader import test_data\n\nclass TestLogin:\n    \"\"\"Test suite for login functionality\"\"\"\n    \n    @pytest.fixture(autouse=True)\n    def setup_test(self, driver):\n        self.login_page = LoginPage(driver)\n        self.driver = driver\n    \n    def test_successful_login_with_valid_credentials(self):\n        \"\"\"Verify user can login with valid credentials\"\"\"\n        logger.info(\"Testing successful login\")\n        \n        # Arrange\n        user = test_data.get_user_data(\"valid_user\")\n        username = user[\"username\"]\n        password = user[\"password\"]\n        \n        # Act\n        self.login_page.navigate_to_page()\n        assert self.login_page.is_page_loaded()\n        result = self.login_page.login(username, password)\n        \n        # Assert\n        assert result is True, \"Login should succeed with valid credentials\"\n        logger.info(\"✅ Login successful\")\n    \n    def test_failed_login_with_invalid_credentials(self):\n        \"\"\"Verify login fails with invalid credentials\"\"\"\n        logger.info(\"Testing failed login\")\n        \n        # Arrange\n        username = \"invalid_user\"\n        password = \"wrong_password\"\n        \n        # Act\n        self.login_page.navigate_to_page()\n        result = self.login_page.login(username, password)\n        \n        # Assert\n        assert result is False, \"Login should fail with invalid credentials\"\n        assert self.login_page.is_error_message_displayed()\n        logger.info(\"✅ Login correctly failed\")\n    \n    @pytest.mark.parametrize(\"username,password,should_succeed\", [\n        (\"valid_user\", \"valid_pass\", True),\n        (\"invalid_user\", \"wrong_pass\", False),\n        (\"\", \"password\", False),\n        (\"username\", \"\", False),\n    ])\n    def test_login_with_various_credentials(self, username, password, should_succeed):\n        \"\"\"Test login with different credential combinations\"\"\"\n        self.login_page.navigate_to_page()\n        result = self.login_page.login(username, password)\n        assert result == should_succeed\n```"
+    },
+    {
+      "task": "debug_element_not_found",
+      "user_query": "My test is failing with 'NoSuchElementException: Unable to locate element'. How do I fix this?",
+      "ai_response": "This is a common issue. Here's how to troubleshoot:\n\n**Step 1: Add Explicit Wait**\n```python\n# Instead of:\nelement = self.driver.find_element(By.ID, \"button\")\n\n# Use:\nelement = self.wait_for_element_visible(By.ID, \"button\", timeout=20)\n```\n\n**Step 2: Verify Locator**\n1. Open browser DevTools (F12)\n2. Use Console to test:\n```javascript\ndocument.getElementById(\"button\")  // Should return element\n```\n\n**Step 3: Check If Element is in Iframe**\n```python\n# If element is in iframe:\nself.driver.switch_to.frame(\"iframe-name\")\nelement = self.find_element(By.ID, \"button\")\nself.driver.switch_to.default_content()  # Switch back\n```\n\n**Step 4: Try Alternative Locators**\n```python\n# Try different strategies:\n(By.ID, \"button\")  # Best\n(By.CSS_SELECTOR, \"#button\")  # Alternative\n(By.XPATH, \"//button[@id='button']\")  # Last resort\n```\n\n**Step 5: Increase Timeout in .env**\n```env\nEXPLICIT_WAIT=30  # Increase from default 20\n```\n\nIf the issue persists, run the test without headless mode to see what's happening:\n```bash\nHEADLESS=false pytest tests/test_name.py -v\n```"
+    },
+    {
+      "task": "add_configuration",
+      "user_query": "How do I add a new configuration option for API testing?",
+      "ai_response": "Here's how to add new configuration:\n\n**Step 1: Update settings.py**\n```python\n# config/settings.py\nclass TestSettings:\n    # ... existing settings ...\n    \n    # Add new API configuration\n    API_BASE_URL = os.getenv(\"API_BASE_URL\", \"https://api.example.com\")\n    API_KEY = os.getenv(\"API_KEY\", \"\")\n    API_TIMEOUT = int(os.getenv(\"API_TIMEOUT\", \"30\"))\n    ENABLE_API_TESTS = os.getenv(\"ENABLE_API_TESTS\", \"false\").lower() == \"true\"\n```\n\n**Step 2: Update .env.example**\n```env\n# Add to .env.example\n# ================================\n# API CONFIGURATION\n# ================================\nAPI_BASE_URL=https://api.example.com\nAPI_KEY=your_api_key_here\nAPI_TIMEOUT=30\nENABLE_API_TESTS=true\n```\n\n**Step 3: Use in Your Code**\n```python\nfrom config.settings import TestSettings\n\napi_url = TestSettings.API_BASE_URL\napi_key = TestSettings.API_KEY\n\nif TestSettings.ENABLE_API_TESTS:\n    # Run API tests\n    pass\n```\n\n**Step 4: Document in README**\nAdd a section about API testing configuration with examples."
+    },
+    {
+      "task": "optimize_performance",
+      "user_query": "My tests are running slowly. How can I speed them up?",
+      "ai_response": "Here are several ways to optimize test performance:\n\n**1. Enable Parallel Execution**\n```bash\npytest -n auto  # Use all CPU cores\npytest -n 4     # Use 4 workers\n```\n\n**2. Disable Images (in .env)**\n```env\nENABLE_IMAGES=false  # Faster page loads\n```\n\n**3. Run in Headless Mode**\n```env\nHEADLESS=true  # No GUI overhead\n```\n\n**4. Reduce Retry Attempts (if tests are stable)**\n```env\nRETRY_COUNT=2  # Down from 3\nRETRY_DELAY=1  # Down from 2\n```\n\n**5. Use Selective Test Execution**\n```bash\npytest -k \"login\"  # Run only login tests\npytest -m smoke    # Run only smoke tests\npytest --lf        # Run last failed only\n```\n\n**6. Optimize Wait Times**\n```python\n# Use shorter timeouts for known-fast elements\nself.wait_for_element_visible(By.ID, \"button\", timeout=5)  # Instead of 20\n```\n\n**7. Session-Scoped Fixtures (when safe)**\n```python\n@pytest.fixture(scope=\"session\")  # Reuse browser\ndef driver():\n    driver = BrowserManager.get_driver()\n    yield driver\n    driver.quit()\n```\n\n**Typical Results:**\n- Before: 60 seconds\n- After: 25-30 seconds\n\nRun benchmarks:\n```bash\npytest --durations=10  # Show slowest tests\n```"
+    }
+  ],
+  "conversation_patterns": {
+    "greeting": {
+      "user": [\"Hi\", \"Hello\", \"Help me\", \"I need help\"],
+      "ai": \"Hello! I'm your AI assistant for the Automation Framework. I can help you with:\n\n• Creating page objects and tests\n• Debugging test failures\n• Understanding framework architecture\n• Adding new features\n• Optimizing performance\n• Troubleshooting issues\n\nWhat would you like to know?\"
+    },
+    "clarification": {
+      "when_to_ask": [
+        \"User query is vague\",
+        \"Multiple interpretations possible\",
+        \"Missing important details\"
+      ],
+      "example": \"I need more details to help you effectively. Could you please specify:\n1. Which page/feature are you working on?\n2. What error message are you seeing?\n3. What have you tried so far?\"
+    },
+    "code_generation": {
+      "always_include": [
+        \"Import statements\",
+        \"Type hints\",
+        \"Docstrings\",
+        \"Error handling\",
+        \"Logging statements\",
+        \"Comments for complex logic\"
+      ],
+      \"follow_patterns\": [
+        \"Use existing framework patterns\",
+        \"Inherit from BasePage\",
+        \"Use LOCATORS dictionary\",
+        \"Follow PEP 8 style guide\",
+        \"Use descriptive names\"
+      ]
+    }
+  }
+}
+
