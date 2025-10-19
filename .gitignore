@@ -63,11 +63,27 @@ reports/*
 .coverage
 htmlcov/
 
+# Behave BDD
+.behave_cache/
+behave-results/
+behave-report/
+*.behave
+
 # Temporary files
 *.tmp
 *.temp
 *.bak
 
+# Audit reports (temporary)
+FRAMEWORK_AUDIT_REPORT.md
+*_AUDIT_*.md
+
+# Archive directory (historical files)
+archive/
+
 # IMPORTANT: Keep documentation
 !docs/
 !docs/*.md
+!prompts/
+!prompts/**/*.md
+!prompts/**/*.json

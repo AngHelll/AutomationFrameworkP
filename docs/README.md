@@ -1,64 +1,74 @@
-# 📚 Documentación del Framework de Automatización
+# Documentation Index
 
-Bienvenido a la documentación completa del Framework de Automatización de Pruebas.
-
-## 📖 Guías Disponibles
-
-### 🌍 **Guía en Español (Recomendada para Principiantes)**
-- **[Guía Completa para Novatos](SPANISH_GUIDE.md)** - Guía completa en español para usuarios con nivel técnico básico
-- **Nivel**: Principiante a Intermedio
-- **Idioma**: Español
-- **Contenido**: Conceptos básicos, ejemplos prácticos, solución de problemas
-
-### 🇺🇸 **English Documentation**
-- **[README Principal](../README.md)** - Documentación técnica completa en inglés
-- **Level**: Intermediate to Advanced
-- **Language**: English
-- **Content**: Technical specifications, API reference, advanced features
-
-## 🎯 ¿Qué Guía Elegir?
-
-### 🚀 **Eres Nuevo en Automatización?**
-- **Recomendación**: Comienza con la [Guía en Español](SPANISH_GUIDE.md)
-- **Razón**: Explicaciones simples, ejemplos paso a paso, conceptos básicos
-
-### 🔧 **Ya Tienes Experiencia Técnica?**
-- **Recomendación**: Usa el [README Principal](../README.md)
-- **Razón**: Información técnica detallada, referencias de API, mejores prácticas
-
-### 🌐 **Quieres Aprender en Ambos Idiomas?**
-- **Recomendación**: Comienza con la guía en español y luego profundiza con la documentación en inglés
-- **Razón**: Mejor comprensión de conceptos + acceso a recursos técnicos avanzados
-
-## 📁 Estructura de la Documentación
-
-```
-docs/
-├── README.md              ← Este archivo (índice)
-├── SPANISH_GUIDE.md      ← Guía completa en español
-└── [futuras guías...]    ← Documentación adicional
-```
-
-## 🔄 Actualizaciones
-
-- **Última actualización**: Enero 2025
-- **Versión del framework**: 1.0
-- **Estado**: Activamente mantenido
-
-## 🤝 Contribuir a la Documentación
-
-¿Encontraste un error o quieres mejorar la documentación?
-
-1. **Crear un Issue**: Reporta problemas o sugiere mejoras
-2. **Hacer Pull Request**: Contribuye directamente con cambios
-3. **Contactar al Equipo**: Para consultas específicas
-
-## 📞 Soporte
-
-- **Issues**: [GitHub Issues](https://github.com/[usuario]/[repositorio]/issues)
-- **Documentación**: Revisa esta carpeta primero
-- **Comunidad**: Únete a nuestros canales de soporte
+**Human-readable guides and tutorials for the Automation Framework.**
 
 ---
 
-**¡Gracias por usar nuestro Framework de Automatización! 🚀**
+## Available Documentation
+
+### For Beginners
+
+#### 📘 **[GUIA_NOVATOS.md](GUIA_NOVATOS.md)** (Spanish)
+Complete beginner's guide in Spanish covering:
+- Framework basics and concepts
+- Installation and setup
+- Writing your first test
+- Troubleshooting common issues
+- Step-by-step tutorials
+
+**Audience:** Spanish-speaking beginners, QA testers new to automation  
+**Level:** Beginner to Intermediate  
+**Language:** Spanish
+
+---
+
+### For Developers
+
+#### 📗 **[Main README](../README.md)** (English)
+Quick start guide covering:
+- Installation
+- Configuration
+- Running tests
+- Basic usage
+
+**Audience:** Developers, QA automation engineers  
+**Level:** Intermediate  
+**Language:** English
+
+---
+
+## AI Context (For AI Agents Only)
+
+The [`prompts/`](../prompts/) directory contains technical reference documentation specifically formatted for AI agents:
+
+- **Technical Reference:** Complete framework API and patterns
+- **Architecture:** Deep dive into framework design
+- **Best Practices:** Coding standards and conventions
+- **BDD Guide:** Complete Behave integration details
+- **Troubleshooting:** Common issues and solutions
+
+**Note:** These files use directive, technical language optimized for AI understanding.
+
+---
+
+## Quick Navigation
+
+| Need | Go To |
+|------|-------|
+| Get started quickly | [Main README](../README.md) |
+| Learn framework (Spanish) | [GUIA_NOVATOS.md](GUIA_NOVATOS.md) |
+| Technical details | [`prompts/context/`](../prompts/context/) |
+| Version history | [CHANGELOG.md](../CHANGELOG.md) |
+
+---
+
+## Documentation Philosophy
+
+- **docs/** = Human-friendly tutorials and guides
+- **prompts/** = AI-optimized technical reference
+- **README.md** = Quick start for immediate use
+- **CHANGELOG.md** = Historical version information
+
+---
+
+**Keep learning and automating! 🚀**

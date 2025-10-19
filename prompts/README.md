@@ -1,349 +1,241 @@
-# AI-Powered Automation Framework - Prompts Directory
+# AI Context Directory
 
-## 🤖 Overview
+**Complete technical reference for AI agents to understand and work with this automation framework.**
 
-This directory contains all the context, examples, and system prompts needed to power an AI assistant for this automation framework. The AI can help with code generation, troubleshooting, optimization, and learning.
+---
 
-## 📁 Directory Structure
+## Purpose
+
+This directory contains comprehensive framework documentation formatted specifically for AI agents (ChatGPT, Claude, Copilot, etc.) to:
+
+- Understand framework architecture
+- Generate code following framework patterns
+- Debug issues
+- Add new features
+- Answer technical questions
+
+---
+
+## Directory Structure
 
 ```
 prompts/
-├── context/              # Framework documentation for AI
-│   ├── framework_overview.md      # Complete framework context
-│   ├── architecture.md            # Deep architectural details
-│   ├── best_practices.md          # Coding standards
-│   ├── troubleshooting.md         # Common issues & solutions
-│   └── add_features.md            # Feature addition guide
+├── context/                    # Technical knowledge base
+│   ├── FRAMEWORK.md           # Complete framework reference
+│   ├── architecture.md        # Architecture patterns and design
+│   ├── bdd_with_behave.md     # BDD implementation guide
+│   ├── best_practices.md      # Coding standards
+│   └── troubleshooting.md     # Problem-solving guide
 │
-├── examples/             # Few-shot learning examples
-│   └── few_shot_examples.json     # Example Q&A pairs
+├── examples/                   # Few-shot learning
+│   └── few_shot_examples.json # Q&A examples
 │
-├── system/               # System prompts
-│   └── system_prompt.md           # AI assistant instructions
+├── system/                     # AI instructions
+│   └── system_prompt.md       # AI assistant behavior
 │
-└── README.md            # This file
+└── README.md                   # This file
 ```
 
-## 🎯 Purpose
+---
 
-The AI assistant can help with:
+## Content Files
 
-### 1. Code Generation
-- Create page objects
-- Write tests
-- Add utilities
-- Generate configuration
+### `context/FRAMEWORK.md`
+**Complete technical reference**
 
-### 2. Troubleshooting
-- Debug element location issues
-- Fix timing problems
-- Resolve configuration issues
-- Diagnose test failures
+Contains:
+- Framework architecture and structure
+- Configuration system
+- Page Object Model implementation
+- Test writing patterns (Pytest + Behave)
+- Utility modules usage
+- Command reference
+- Adding new features
 
-### 3. Optimization
-- Improve test performance
-- Suggest better locators
-- Recommend parallel execution
-- Optimize resource usage
+**When to use:** Primary reference for understanding framework capabilities
 
-### 4. Learning
-- Explain framework concepts
-- Teach best practices
-- Provide examples
-- Answer questions
+---
 
-## 📚 Context Files
+### `context/architecture.md`
+**Deep architectural analysis**
 
-### framework_overview.md
-Complete overview including:
-- Framework identity and purpose
-- Technology stack
-- Project structure
-- Key components
-- Configuration
-- Test execution
-- Current statistics
-
-### architecture.md
-Deep architectural details:
+Contains:
 - Design patterns (POM, Factory, Decorator, etc.)
-- Component architecture
-- Data flow diagrams
-- Configuration hierarchy
-- Error handling strategy
-- Parallel execution model
+- Component interactions
+- Data flow
+- Class hierarchies
+- Module dependencies
 
-### best_practices.md
-Coding standards and patterns:
-- Code organization
+**When to use:** Understanding framework design decisions and patterns
+
+---
+
+### `context/bdd_with_behave.md`
+**BDD implementation guide**
+
+Contains:
+- Behave framework integration
+- Gherkin syntax
+- Step definition patterns
+- Feature organization
+- BDD best practices
+
+**When to use:** Working with BDD tests or Behave-specific features
+
+---
+
+### `context/best_practices.md`
+**Coding standards and conventions**
+
+Contains:
+- Code style guidelines
 - Naming conventions
-- Locator strategies
-- Wait strategies
-- Error handling
-- Logging practices
-- Performance tips
+- Test organization patterns
+- Anti-patterns to avoid
+- Performance optimizations
 
-### troubleshooting.md
-Common issues and solutions:
-- Element not found errors
-- Stale element references
-- Timeout exceptions
-- Click intercepted errors
-- WebDriver issues
-- Configuration problems
-- Debugging strategies
-
-### add_features.md
-Step-by-step guides for:
-- Adding page objects
-- Creating tests
-- Adding utilities
-- Configuring options
-- Adding test data
-- Supporting new browsers
-
-## 🎓 How to Use
-
-### For AI Model Training
-```python
-# Load all context files
-context = {
-    "framework": read_file("context/framework_overview.md"),
-    "architecture": read_file("context/architecture.md"),
-    "best_practices": read_file("context/best_practices.md"),
-    "troubleshooting": read_file("context/troubleshooting.md"),
-    "features": read_file("context/add_features.md"),
-}
-
-# Load few-shot examples
-examples = json.load(open("examples/few_shot_examples.json"))
-
-# Load system prompt
-system_prompt = read_file("system/system_prompt.md")
-
-# Create AI assistant
-assistant = create_ai_assistant(
-    system_prompt=system_prompt,
-    context=context,
-    examples=examples
-)
-```
-
-### For Chat Interfaces
-```python
-# Initialize with system prompt and context
-chat = ChatInterface(
-    system_prompt="prompts/system/system_prompt.md",
-    context_dir="prompts/context/",
-    examples="prompts/examples/few_shot_examples.json"
-)
-
-# User interaction
-response = chat.ask("How do I create a page object?")
-```
-
-### For Code Generators
-```python
-# Use examples for code generation
-generator = CodeGenerator(
-    examples="prompts/examples/few_shot_examples.json",
-    best_practices="prompts/context/best_practices.md"
-)
-
-code = generator.create_page_object(
-    name="LoginPage",
-    elements=["username", "password", "submit"]
-)
-```
-
-## 🔄 Few-Shot Learning
-
-The `few_shot_examples.json` contains:
-
-### Example Categories
-1. **create_page_object**: Page object creation
-2. **create_test**: Test generation
-3. **debug_element_not_found**: Debugging help
-4. **add_configuration**: Configuration guidance
-5. **optimize_performance**: Performance tips
-
-### Conversation Patterns
-- Greeting responses
-- Clarification requests
-- Code generation guidelines
-- Response formatting
-
-## 🛠️ Integration Examples
-
-### Example 1: Using with OpenAI API
-```python
-import openai
-
-# Load context
-with open("prompts/system/system_prompt.md") as f:
-    system_prompt = f.read()
-
-with open("prompts/context/framework_overview.md") as f:
-    framework_context = f.read()
-
-# Create completion
-response = openai.ChatCompletion.create(
-    model="gpt-4",
-    messages=[
-        {"role": "system", "content": system_prompt},
-        {"role": "system", "content": framework_context},
-        {"role": "user", "content": "How do I add a new page object?"}
-    ]
-)
-```
-
-### Example 2: Using with Anthropic Claude
-```python
-import anthropic
-
-client = anthropic.Client(api_key=API_KEY)
-
-# Load all context
-context = load_all_context_files()
-
-message = client.messages.create(
-    model="claude-3-opus-20240229",
-    system=context["system_prompt"] + "\n\n" + context["framework"],
-    messages=[
-        {"role": "user", "content": "Create a checkout page object"}
-    ]
-)
-```
-
-### Example 3: Local RAG System
-```python
-from langchain import FAISS, OpenAIEmbeddings
-
-# Create vector store from context files
-embeddings = OpenAIEmbeddings()
-docs = load_markdown_files("prompts/context/")
-vectorstore = FAISS.from_documents(docs, embeddings)
-
-# Query
-results = vectorstore.similarity_search(
-    "How to fix element not found errors?",
-    k=3
-)
-```
-
-## 📊 Context Statistics
-
-- **Total Context Size**: ~50,000 tokens
-- **Context Files**: 5
-- **Few-Shot Examples**: 5
-- **Conversation Patterns**: 3
-- **Coverage**: Complete framework documentation
-
-## 🔧 Maintenance
-
-### Updating Context
-When framework changes:
-1. Update relevant context files
-2. Add new examples if needed
-3. Update framework statistics
-4. Test AI responses
-5. Commit changes
-
-### Adding New Examples
-```json
-{
-  "task": "new_feature",
-  "user_query": "User question",
-  "ai_response": "AI response with code examples"
-}
-```
-
-### Testing AI Responses
-```python
-# Test AI with common queries
-test_queries = [
-    "How do I create a page object?",
-    "My test is failing with element not found",
-    "How do I optimize test performance?",
-]
-
-for query in test_queries:
-    response = ai_assistant.ask(query)
-    validate_response(response)
-```
-
-## 🎯 Best Practices
-
-### For Context Updates
-- Keep information current
-- Use clear examples
-- Include code snippets
-- Reference actual framework code
-- Update statistics regularly
-
-### For AI Integration
-- Load all relevant context
-- Use few-shot examples
-- Provide clear system prompts
-- Handle errors gracefully
-- Log interactions
-
-### For Users
-- Ask specific questions
-- Provide error messages
-- Share relevant code
-- Specify goals clearly
-- Give feedback
-
-## 🚀 Future Enhancements
-
-Planned additions:
-- [ ] More few-shot examples
-- [ ] Video tutorial transcripts
-- [ ] API documentation context
-- [ ] Performance benchmarks
-- [ ] CI/CD integration guides
-- [ ] Advanced patterns library
-
-## 📖 Related Documentation
-
-- Main README: `../README.md`
-- Spanish Guide: `../GUIA_NOVATOS.md`
-- Fixes Documentation: `../FIXES_APPLIED.md`
-- Framework Docs: `../docs/`
+**When to use:** Ensuring code quality and consistency
 
 ---
 
-## 💡 Quick Start
+### `context/troubleshooting.md`
+**Problem-solving guide**
 
-To use the AI assistant:
+Contains:
+- Common errors and solutions
+- Debugging techniques
+- Configuration issues
+- Browser-specific problems
+- CI/CD troubleshooting
 
-1. **Load Context**
-```bash
-export CONTEXT_DIR="prompts/context"
-export EXAMPLES="prompts/examples/few_shot_examples.json"
-```
-
-2. **Ask Questions**
-```python
-response = ai.ask("How do I create a login page object?")
-```
-
-3. **Get Help**
-```python
-response = ai.troubleshoot("Element not found error")
-```
-
-4. **Generate Code**
-```python
-code = ai.generate_page_object(
-    name="ProfilePage",
-    url="/profile",
-    elements=["username", "email", "save_button"]
-)
-```
+**When to use:** Debugging issues or answering "why isn't X working?"
 
 ---
 
-**The AI assistant makes this framework accessible to everyone, from beginners to experts!** 🎉
+### `examples/few_shot_examples.json`
+**Training examples**
 
+Contains:
+- Example user questions
+- Expected AI responses
+- Code generation examples
+- Debugging scenarios
+
+**When to use:** Understanding expected AI behavior patterns
+
+---
+
+### `system/system_prompt.md`
+**AI behavior instructions**
+
+Contains:
+- AI assistant role definition
+- Response guidelines
+- Code generation rules
+- Communication style
+
+**When to use:** Defining how AI should interact with users
+
+---
+
+## How AI Should Use This Context
+
+### Step 1: Load Relevant Context
+When user asks about the framework, load appropriate files:
+- General questions → `FRAMEWORK.md`
+- Architecture questions → `architecture.md`
+- BDD questions → `bdd_with_behave.md`
+- Errors/issues → `troubleshooting.md`
+- Code quality → `best_practices.md`
+
+### Step 2: Apply Framework Patterns
+Use loaded context to:
+- Generate code matching framework style
+- Follow established patterns
+- Use correct imports and structure
+- Apply best practices
+
+### Step 3: Provide Directive Responses
+Responses should be:
+- **Authoritative:** "The framework uses X" (not "you could use X")
+- **Specific:** Exact file paths, class names, commands
+- **Complete:** Working code examples
+- **Directive:** Clear instructions, not suggestions
+
+---
+
+## Documentation Tone
+
+All files in `prompts/context/` use **directive, authoritative language**:
+
+✅ **DO:**
+- "The framework uses Behave for BDD"
+- "Place page objects in `pages/` directory"
+- "Execute tests with `pytest` command"
+- "The BasePage class provides retry logic"
+
+❌ **DON'T:**
+- "We recently added BDD support"
+- "You can write tests"
+- "This might help"
+- "Consider using page objects"
+
+---
+
+## Maintenance
+
+### When Adding Features
+1. Update `FRAMEWORK.md` with feature usage
+2. Update `architecture.md` if pattern changes
+3. Update `best_practices.md` with new conventions
+4. Add examples to `few_shot_examples.json`
+
+### When Fixing Issues
+1. Document solution in `troubleshooting.md`
+2. Update `best_practices.md` to prevent recurrence
+3. Update `FRAMEWORK.md` if configuration changes
+
+---
+
+## Integration with IDE AI Tools
+
+### GitHub Copilot
+Load context files as reference to improve suggestions
+
+### ChatGPT/Claude
+Copy relevant context files into chat for framework-aware responses
+
+### Cursor AI
+Place cursor in relevant files for context-aware completions
+
+---
+
+## File Sizes
+
+| File | Size | Load Time |
+|------|------|-----------|
+| FRAMEWORK.md | ~15KB | Instant |
+| architecture.md | ~17KB | Instant |
+| bdd_with_behave.md | ~13KB | Instant |
+| best_practices.md | ~13KB | Instant |
+| troubleshooting.md | ~12KB | Instant |
+| **Total Context** | ~70KB | < 1 second |
+
+All files load quickly and fit within typical AI context windows.
+
+---
+
+## Quick Reference
+
+| User Question | Load This File |
+|--------------|----------------|
+| "How do I create a page object?" | `FRAMEWORK.md` |
+| "Why use POM pattern?" | `architecture.md` |
+| "How to write BDD scenarios?" | `bdd_with_behave.md` |
+| "Element not found error" | `troubleshooting.md` |
+| "Best way to organize tests?" | `best_practices.md` |
+| "Generate login test" | `few_shot_examples.json` + `FRAMEWORK.md` |
+
+---
+
+**These files enable AI agents to work with the framework as effectively as experienced developers.**
