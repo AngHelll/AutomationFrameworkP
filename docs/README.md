@@ -22,6 +22,37 @@ Complete beginner's guide in Spanish covering:
 
 ---
 
+### For DevOps & CI/CD
+
+#### 🐳 **[DOCKER_GUIDE.md](DOCKER_GUIDE.md)** (English)
+Complete Docker usage guide covering:
+- When to use Docker (CI/CD, teams, scaling)
+- When NOT to use Docker (local dev, debugging)
+- Setup and basic usage
+- Advanced configurations
+- CI/CD integration examples
+- Performance optimization
+- Troubleshooting
+
+**Audience:** DevOps engineers, CI/CD maintainers, team leads  
+**Level:** Intermediate to Advanced  
+**Language:** English
+
+#### ⚡ **[CI_COMPARISON.md](CI_COMPARISON.md)** (English)
+**Practical comparison: Docker vs Direct CI/CD**
+- Side-by-side workflow comparison
+- Execution time analysis
+- Cost breakdown (GitHub Actions minutes)
+- When to use each approach
+- Real-world decision examples
+- Practice exercises with both workflows
+
+**Audience:** Developers learning CI/CD, team leads evaluating approaches  
+**Level:** Intermediate  
+**Language:** English
+
+---
+
 ### For Developers
 
 #### 📗 **[Main README](../README.md)** (English)
@@ -57,6 +88,8 @@ The [`prompts/`](../prompts/) directory contains technical reference documentati
 |------|-------|
 | Get started quickly | [Main README](../README.md) |
 | Learn framework (Spanish) | [GUIA_NOVATOS.md](GUIA_NOVATOS.md) |
+| Setup Docker/CI/CD | [DOCKER_GUIDE.md](DOCKER_GUIDE.md) |
+| Compare CI approaches | [CI_COMPARISON.md](CI_COMPARISON.md) |
 | Technical details | [`prompts/context/`](../prompts/context/) |
 | Version history | [CHANGELOG.md](../CHANGELOG.md) |
 
