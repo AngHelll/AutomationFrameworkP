@@ -1,3 +1,18 @@
+# ⚡ CI/CD Workflow - Direct Python Approach (RECOMMENDED)
+# 
+# 🎯 What this does:
+#    - Installs Python directly on GitHub's runner
+#    - Runs tests without Docker (faster!)
+#    - Perfect for daily development
+#
+# ⏱️  Execution time: ~1 minute (with cache)
+# 💰 Cost: LOW (less compute time)
+# 🎓 Recommended for: Regular CI/CD, fast feedback
+#
+# 📊 When it runs:
+#    - Every push to main branch
+#    - Every pull request to main branch
+
 name: CI - Run Automation Tests
 
 on:
@@ -10,28 +25,93 @@ on:
 
 jobs:
   test:
+    # 🖥️  Run on Ubuntu (free GitHub runner)
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4  # Update to latest version
+      # 📥 STEP 1: Get the code
+      # Downloads your repository code to the runner
+      - name: 📥 Checkout Repository
+        uses: actions/checkout@v4  # ✅ Latest version
+        # This action downloads your entire repo to the runner
+        # so tests can access all your framework files
 
-      - name: Set up Python
-        uses: actions/setup-python@v4  # Update to latest version
+      # 🐍 STEP 2: Setup Python
+      # Installs Python on the GitHub runner
+      - name: 🐍 Set up Python 3.11
+        uses: actions/setup-python@v4  # ✅ Latest version
         with:
           python-version: "3.11"
+        # Why Python 3.11?
+        # - Modern features
+        # - Fast performance
+        # - Matches local development
 
-      - name: Install Dependencies
+      # 📦 STEP 3: Install Dependencies
+      # Installs all packages from requirements.txt
+      - name: 📦 Install Dependencies
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
+        # What's happening:
+        # 1. Upgrade pip to latest version (security + features)
+        # 2. Install all packages: pytest, selenium, behave, etc.
+        # 💡 TIP: GitHub caches these! 2nd run is much faster
 
-      - name: Run Tests with Parallel Execution
+      # 🧪 STEP 4: Run Tests
+      # Execute all Pytest tests with parallel execution
+      - name: 🧪 Run Tests with Parallel Execution
         run: pytest -n auto --html=reports/test_report.html --self-contained-html
+        # Command breakdown:
+        # - pytest          → Run test framework
+        # - -n auto         → Parallel execution (use all CPU cores)
+        # - --html=...      → Generate HTML report
+        # - --self-contained-html → Embed everything in one file
+        # 
+        # ⚡ Parallel execution means:
+        #    1 core  = 30 seconds
+        #    4 cores = 10 seconds (much faster!)
 
-      - name: Upload Test Reports as Artifacts
-        uses: actions/upload-artifact@v4  # Update from v3 to v4
+      # 📊 STEP 5: Save Test Reports
+      # Upload reports so you can download them later
+      - name: 📊 Upload Test Reports as Artifacts
+        uses: actions/upload-artifact@v4  # ✅ Latest version
         with:
           name: test-reports
           path: reports/test_report.html
           retention-days: 7
+        # What this does:
+        # - Saves test report as downloadable artifact
+        # - Available in GitHub Actions UI
+        # - Keeps for 7 days (adjust if needed)
+        # - Can download even if tests fail
+        # 
+        # 📥 To download:
+        #    Actions → Click workflow run → Scroll to Artifacts
+
+# 🎯 WORKFLOW SUMMARY:
+# ═══════════════════════════════════════════════════════════
+# 1. Checkout     →  5 seconds   📥 Get code
+# 2. Setup Python → 10 seconds   🐍 Install Python
+# 3. Install Deps → 20 seconds   📦 pip install (cached!)
+# 4. Run Tests    → 30 seconds   🧪 Execute tests
+# 5. Upload       →  5 seconds   📊 Save reports
+# ───────────────────────────────────────────────────────────
+# TOTAL:          ~70 seconds    ⚡ Fast feedback!
+# ═══════════════════════════════════════════════════════════
+#
+# 💡 TIPS:
+# - First run takes longer (no cache)
+# - Subsequent runs are much faster
+# - Use this for daily development
+# - Perfect for pull request checks
+#
+# 🐛 DEBUGGING:
+# - Check each step's logs in GitHub Actions
+# - Download artifacts to see test reports
+# - Tests run in headless mode (no browser visible)
+#
+# ✅ SUCCESS CRITERIA:
+# - All steps complete with green checkmarks
+# - pytest exit code 0 (all tests pass)
+# - HTML report generated and uploaded
